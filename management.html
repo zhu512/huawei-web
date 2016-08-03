@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  
+    <title>Management</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3.0, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!--<link rel="stylesheet" href="css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link href="css/font-awesome.css" rel="stylesheet">
+    <link rel="shortcut icon" href="logo.ico" type="image/x-icon" />
+    <link rel="stylesheet"  href="css/jquery.dataTables.min.css">
+    <link rel="stylesheet"  href="css/jquery.dataTables_themeroller.css">
+    <link rel="stylesheet"  href="css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet"  href="css/jquery.confirm.css">
+    <link rel="stylesheet"  href="css/spectrum.css">
+    <link rel="stylesheet"  href="css/mystyle2.css">
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="css/font-awesome-ie7.min.css">
+    <![endif]-->
+    <!--[if lt IE 9]>
+     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+ </head>
+  
+  <body>
+ <nav class="navbar navbar-default" role="navigation">
+   <div class="navbar-header">
+      <a class="navbar-brand" href="#">NPOD</a>
+   </div>
+   <div>
+      <!--向左对齐-->
+      <ul class="nav navbar-nav navbar-left">
+					<li><a href="index.html"><i class="icon-dashboard"></i><span>Home</span> </a>
+                    </li>
+                    <li  class="active"><a href="management.html"><i class="icon-list-alt"></i><span>Management</span> </a>
+                    </li>
+      </ul>
+      <!--向右对齐-->
+      <ul class="nav navbar-nav navbar-right">
+         <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+               settings&nbsp;&nbsp;&nbsp;<b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+               <li><a href="#" onclick="createDialog();">progress</a></li>
+            </ul>
+         </li>
+      </ul>
+   </div>
+</nav>
+  <!-- main -->
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="row-fluid sortable">
+<div class="col-md-2">
+<h4><i class="icon-bookmark"></i>&nbsp;&nbsp;Management</h4>
+<ul class="sidebar">
+<li><a href="#psr" onclick="initDelRules(this)">Powering Saving Rule</a></li>
+<li><a href="#ps" onclick="initSetting(this)">Portal Setting</a></li>
+</ul>
+</div>
+<div class="col-md-10">
+<div id="psr">
+<div class="panel panel-info">
+   <div class="panel-heading">
+      <h3 class="panel-title">
+         <i class="icon-info-sign"></i>&nbsp;&nbsp;Power Saving Rules can be used to shut down resources unnecessary when the workload is reduced!
+      </h3>
+   </div>
+</div>
+<div class="button">
+<button type="button" class="btn btn-primary" onclick="initCreateRule()"><i class="icon-plus-sign"></i>&nbsp;&nbsp;Create</button>
+<button type="button" class="btn btn-success" onclick="startRule()"><i class="icon-ok-sign"></i>&nbsp;&nbsp;Enable</button>
+<button type="button" class="btn btn-default" onclick="disableRule()"><i class="icon-remove-sign"></i>&nbsp;&nbsp;Disable</button>
+</div>
+<hr>
+<table class="table table-bordered table-striped table-condensed bootstrap-datatable ruleTable"></table>
+</div>
+<div id="cr">
+<div class="panel panel-info">
+   <div class="panel-heading">
+      <h3 class="panel-title">
+         <i class="icon-info-sign"></i>&nbsp;&nbsp;You are trying to modify the Atrributes for "energy saving strategy".
+      </h3>
+   </div>
+</div>
+<div class="panel-group" id="caccordion1">
+   <div class="panel panel-default">
+      <div class="panel-heading">
+         <h5 class="panel-title">
+            <a data-toggle="collapse" data-parent="#caccordion1" 
+               href="#collapseOne">
+               Basic Information
+            </a>
+         </h5>
+      </div>
+      <div id="collapseOne" class="panel-collapse collapse in">
+         <div class="panel-body">
+         <form class="form-horizontal" role="form" id="form1">
+           <div class="form-group">
+      <label for="name" class="col-sm-2 control-label">Rule name:</label>
+      <div class="col-sm-10 col-md-5">
+         <input type="text" class="form-control" id="name" 
+            placeholder="energy saving strategy" check-type="required" required-message="Please fill in the rule name">
+      </div>
+   </div>
+   <div class="form-group">
+      <label for="description" class="col-sm-2 control-label">Description:</label>
+      <div class="col-sm-10 col-md-5">
+          <textarea id="description" class="form-control" rows="3" placeholder="description of your energy saving strategy" check-type="required" required-message="Please fill in the description"></textarea>
+      </div>
+   </div>
+			<div class="form-group">
+                <label for="start" class="col-sm-2 control-label">Start Time:</label>
+                <div id="sdatetimepicker" class="col-sm-10 col-md-5 input-append date" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
+                    <input size="16" type="text" id="end" value="00:00" readonly>
+                    <span class="add-on"><i class="icon-remove"></i></span>
+					<span class="add-on"><i class="icon-time"></i></span>
+                </div>
+				<input type="hidden" id="dtp_input3" value="" /><br/>
+            </div>
+			<div class="form-group">
+                <label for="end" class="col-sm-2 control-label">End Time:</label>
+                <div id="edatetimepicker" class="col-sm-10 col-md-5 input-append date" data-date="" data-date-format="hh:ii" data-link-field="dtp_input4" data-link-format="hh:ii">
+                    <input size="16" type="text" id="end" value="00:00" readonly>
+                    <span class="add-on"><i class="icon-remove"></i></span>
+					<span class="add-on"><i class="icon-time"></i></span>
+                </div>
+				<input type="hidden" id="dtp_input4" value="" /><br/>
+            </div>
+</form>
+         </div>
+      </div>
+   </div>
+   </div>
+   <div class="panel-group" id="caccordion2">
+   <div class="panel panel-success">
+      <div class="panel-heading">
+         <h5 class="panel-title">
+            <a data-toggle="collapse" data-parent="#caccordion2" 
+               href="#collapseTwo">
+               Strategy Parameter
+            </a>
+         </h5>
+      </div>
+      <div id="collapseTwo" class="panel-collapse collapse in">
+         <div class="panel-body">
+          <form class="form-horizontal" role="form">
+           <div class="form-group">
+            <label for="link" class="col-sm-2 control-label">Link Utilization:</label>
+            <div class="col-sm-10 col-md-5">
+               <input type="number" id="link" min="1" max="100" />&nbsp;%
+            </div>
+            </div>
+           <div class="form-group">
+            <label for="other" class="col-sm-2 control-label">other:</label>
+            <div class="col-sm-10 col-md-5">
+            <textarea class="form-control" id="other" rows="3"></textarea>
+            </div>
+            </div>
+            </form>
+      </div>
+   </div>
+         </div>
+      </div>
+<div class="button">
+<button type="submit" class="btn btn-success"  onclick="saveRule(this)"><i class="icon-ok-sign"></i>&nbsp;&nbsp;Save</button>
+<button type="reset" class="btn btn-default"  onclick="quitRule(this)"><i class="icon-remove-sign"></i>&nbsp;&nbsp;Cancel</button>
+</div>
+</div>
+<div id="ps">
+<div class="panel panel-info">
+   <div class="panel-heading">
+      <h3 class="panel-title">
+         <i class="icon-info-sign"></i>&nbsp;&nbsp;You are trying to modify the Atrributes for Portal Setting.
+      </h3>
+   </div>
+</div>
+<div class="panel-group" id="accordion1">
+   <div class="panel panel-default">
+      <div class="panel-heading">
+         <h5 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion1" 
+               href="#collapse1">
+               Energy Saving
+            </a>
+         </h5>
+      </div>
+<div id="collapse1" class="panel-collapse collapse in">
+<div class="panel-body">
+<form class="form-horizontal" role="form">
+<div class="form-group">
+<label for="lenoftime" class="col-sm-2 control-label">The unit length of time:</label>
+<div class="col-sm-10 col-md-3 flag">
+<select class="form-control">
+  <option value="1">1</option>
+  <option value="2" selected>3</option>
+  <option value="3">5</option>
+  <option value="4">30</option>
+</select>
+</div>
+<div class="col-sm-10 col-md-3">
+<select class="form-control">
+  <option value="minute">Minute(s)</option>
+  <option value="hour" selected>Hour(s)</option>
+  <option value="day">Day(s)</option>
+  <option value="second">Week(s)</option>
+</select>
+</div>
+   </div>
+   <div class="form-group">
+      <label for="color1" class="col-sm-2 control-label">Histogram color:</label>
+      <div class="col-sm-10 col-md-3">
+       <input type='text' id="color1" />
+      </div>
+   </div>
+<div class="form-group fre">
+ <label for="refresh" class="col-sm-2 control-label">Refresh Frequency:</label>
+<div class="col-sm-10 col-md-3">
+<select class="form-control">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+</select>
+</div>
+<div class="col-sm-10 col-md-3">
+<select class="form-control">
+  <option value="second">Second(s)</option>
+  <option value="minute">Minute(s)</option>
+  <option value="hour">Hour(s)</option>
+  <option value="day">Day(s)</option>
+</select>
+</div>
+            </div>
+</form>
+         </div>
+      </div>
+   </div>
+ </div>
+<div class="panel-group" id="accordion2">
+   <div class="panel panel-default">
+      <div class="panel-heading">
+         <h5 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion2" 
+               href="#collapse2">
+               Energy Consumption
+            </a>
+         </h5>
+      </div>
+      <div id="collapse2" class="panel-collapse collapse in">
+         <div class="panel-body">
+         <form class="form-horizontal" role="form">
+           <div class="form-group">
+      <label for="lenoftime" class="col-sm-2 control-label">The unit length of time:</label>
+<div class="col-sm-10 col-md-3 flag">
+<select class="form-control">
+  <option value="1">1</option>
+  <option value="2" selected>3</option>
+  <option value="3">5</option>
+  <option value="4">30</option>
+</select>
+</div>
+<div class="col-sm-10 col-md-3">
+<select class="form-control">
+  <option value="minute">Minute(s)</option>
+  <option value="hour" selected>Hour(s)</option>
+  <option value="day">Day(s)</option>
+  <option value="second">Week(s)</option>
+</select>
+</div>
+   </div>
+   <div class="form-group">
+      <label for="color2" class="col-sm-2 control-label">Histogram color:</label>
+      <div class="col-sm-10 col-md-3">
+<input type='text' id="color2" />
+      </div>
+   </div>
+			<div class="form-group fre">
+      <label for="refresh" class="col-sm-2 control-label">Refresh Frequency:</label>
+<div class="col-sm-10 col-md-3">
+<select class="form-control">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+</select>
+</div>
+<div class="col-sm-10 col-md-3">
+<select class="form-control">
+  <option value="second">Second(s)</option>
+  <option value="minute">Minute(s)</option>
+  <option value="hour">Hour(s)</option>
+  <option value="day">Day(s)</option>
+</select>
+</div>
+            </div>
+</form>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="panel-group" id="accordion3">
+   <div class="panel panel-default">
+      <div class="panel-heading">
+         <h5 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion3" 
+               href="#collapse3">
+               Link Utilization
+            </a>
+         </h5>
+      </div>
+      <div id="collapse3" class="panel-collapse collapse in">
+         <div class="panel-body">
+         <form class="form-horizontal" role="form">
+           <div class="form-group">
+      <label for="lenoftime" class="col-sm-2 control-label">The unit length of time:</label>
+<div class="col-sm-10 col-md-3 flag">
+<select class="form-control">
+  <option value="1">1</option>
+  <option value="2" selected>3</option>
+  <option value="3">5</option>
+  <option value="4">30</option>
+</select>
+</div>
+<div class="col-sm-10 col-md-3">
+<select class="form-control">
+  <option value="minute">Minute(s)</option>
+  <option value="hour" selected>Hour(s)</option>
+  <option value="day">Day(s)</option>
+  <option value="second">Week(s)</option>
+</select>
+</div>
+   </div>
+
+<div class="form-group fre">
+ <label for="refresh" class="col-sm-2 control-label">Refresh Frequency:</label>
+<div class="col-sm-10 col-md-3">
+<select class="form-control">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3" >3</option>
+  <option value="4">4</option>
+</select>
+</div>
+<div class="col-sm-10 col-md-3">
+<select class="form-control">
+  <option value="second">Second(s)</option>
+  <option value="minute">Minute(s)</option>
+  <option value="hour">Hour(s)</option>
+  <option value="day">Day(s)</option>
+</select>
+</div>
+            </div>
+</form>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="panel-group" id="accordion4">
+   <div class="panel panel-default">
+      <div class="panel-heading">
+         <h5 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion4" 
+               href="#collapse4">
+               Network Traffic
+            </a>
+         </h5>
+      </div>
+      <div id="collapse4" class="panel-collapse collapse in">
+         <div class="panel-body">
+         <form class="form-horizontal" role="form">
+           <div class="form-group">
+      <label for="lenoftime" class="col-sm-2 control-label">The unit length of time:</label>
+<div class="col-sm-10 col-md-3 flag">
+<select class="form-control">
+  <option value="1">1</option>
+  <option value="2" selected>3</option>
+  <option value="3">5</option>
+  <option value="4">30</option>
+</select>
+</div>
+<div class="col-sm-10 col-md-3">
+<select class="form-control">
+  <option value="minute">Minute(s)</option>
+  <option value="hour" selected>Hour(s)</option>
+  <option value="day">Day(s)</option>
+  <option value="second">Week(s)</option>
+</select>
+</div>
+   </div>
+   <div class="form-group">
+      <label for="color3" class="col-sm-2 control-label">Histogram color:</label>
+      <div class="col-sm-10 col-md-3">
+<input type='text' id="color3" />
+      </div>
+   </div>
+<div class="form-group fre">
+      <label for="refresh" class="col-sm-2 control-label">Refresh Frequency:</label>
+<div class="col-sm-10 col-md-3">
+<select class="form-control">
+  <option value="1">1</option>
+  <option value="2" >2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+</select>
+</div>
+<div class="col-sm-10 col-md-3">
+<select class="form-control">
+  <option value="second">Second(s)</option>
+  <option value="minute">Minute(s)</option>
+  <option value="hour">Hour(s)</option>
+  <option value="day">Day(s)</option>
+</select>
+</div>
+ </div>
+</form>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="button" style="margin-bottom:10px;">
+<button type="submit" class="btn btn-success"  onclick="saveSetting(this)"><i class="icon-ok-sign"></i>&nbsp;&nbsp;Save</button>
+<button type="reset" class="btn btn-default"  onclick="quitSetting(this)"><i class="icon-remove-sign"></i>&nbsp;&nbsp;Cancel</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+	<script src="js/jquery-2.1.3.min.js"></script>
+	<script  src="js/jquery.dataTables.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<!--<script type="text/javascript" src="http://sandbox.runjs.cn/uploads/rs/238/n8vhm36h/dataTables.bootstrap.js"></script> -->
+	<script src="js/bootstrap-datetimepicker.min.js"></script>
+	<script src="js/locales/bootstrap-datetimepicker.fr.js"></script>
+	<script src="js/jquery.confirm.js"></script>
+	<script src="js/bootstrap3-validation.js"></script>
+	<script src="js/spectrum.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+    <script src="js/setting.js"></script>
+</body>
+</html>

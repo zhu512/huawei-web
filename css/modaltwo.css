@@ -1,0 +1,66 @@
+#myModal .modal-dialog{
+	width:710px;
+}
+#myModal .modal-header {
+  padding: 6px;
+}
+#myModal .modal-body{
+  padding: 2px 0 0 0;
+
+}
+#myModal .modal-body .nav{
+  float:left;
+}
+#myModal .modal-body .layout{
+	float:right;
+	margin-bottom:0px;
+}
+#myModal .modal-body .layout li{
+	display:inline-block;
+	margin-right:5px;
+	text-decoration:none;
+}
+#myModal .modal-content-mine{
+    clear: both;
+    width:705px;
+    overflow:auto;
+}
+.modal-item{
+    width: 320px;
+    margin-left: 20px;
+    margin-top: 20px;
+    padding: 5px ;
+    border: 1px solid #b0c4de;
+    display: inline-block;
+    *zoom: 1;
+}
+.modal-item dl{
+    display: inline-block;
+    *zoom: 1;
+}
+.modal-item dl>dd{
+    word-wrap:break-word;
+    *zoom: 1;
+}         
+
+
+/*lm~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+#psModal .modal-dialog{
+	width:710px;
+}
+#psModal .modal-header {
+  padding: 6px;
+}
+#psModal .modal-body{
+  padding: 2px 0 0 0;
+}
+#psModal .modal-body .nav{
+  float:left;
+}
+#psModal .modal-content-mine{
+    clear: both;
+    width:705px;
+    overflow:auto;
+    max-height: 400px;
+}
+
